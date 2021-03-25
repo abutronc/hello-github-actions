@@ -1,5 +1,10 @@
 name: A workflow for my Hello World file
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  release:
+    types: [published]
 jobs:
   build:
     name: Hello world action
