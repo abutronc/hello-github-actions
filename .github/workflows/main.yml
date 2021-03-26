@@ -35,10 +35,17 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout actions repository
+        uses: actions/checkout@v2
         with:
           owner: ${{ github.repository_owner }}
-          version: "${arrTag[2]}"
+          version: "build version"
+          branch: ${{ github.ref }}
+      - name: Execute my action
+        uses: ./action-a/my-action
+        with:
+          owner: ${{ github.repository_owner }}
+          version: "build version"
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.7.2
         with:
