@@ -18,8 +18,8 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Checkout
-        uses: actions/checkout@v2
         # This step references the directory that contains the action.
         uses: ./action-a/action1
         with:
