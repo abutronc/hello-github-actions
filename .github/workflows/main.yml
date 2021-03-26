@@ -18,10 +18,8 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Checkout
-        # This step references the directory that contains the action.
-        uses: ./action-a/action1
+        uses: actions/checkout@v2
         with:
           owner: ${{ github.repository_owner }}
           version: "build version"
@@ -37,8 +35,7 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
-        # This step references the directory that contains the action.
-      - uses: ./action-a/action2
+      - uses: actions/checkout@v2
         with:
           owner: ${{ github.repository_owner }}
           version: "${arrTag[2]}"
