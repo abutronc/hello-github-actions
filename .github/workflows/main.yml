@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         # This step references the directory that contains the action.
-        uses: ./action-a/action2
+      - uses: ./action-a/action2
         with:
           owner: ${{ github.repository_owner }}
           version: "${arrTag[2]}"
