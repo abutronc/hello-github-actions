@@ -18,20 +18,33 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
         with:
-          MY_NAME: "Ariel"
+          owner: ${{ github.repository_owner }}
+          version: "build version"
+          branch: ${{ github.ref }}
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 3.1
+      - name: Build
+        run: dotnet build ./ArielWeb/ArielWeb.csproj -c Release
   deploy:
     needs: [build]
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          owner: ${{ github.repository_owner }}
+          version: "${arrTag[2]}"
+          branch: ${{ github.ref }}
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: 3.1
-          source-url: https://nuget.pkg.github.com/DnDBeyond/index.json
+          source-url: https://nuget.pkg.github.com/ArielWeb/index.json
       - name: Create Release NuGet package
         run: |
           arrTag=(${GITHUB_REF//\// })
@@ -39,3 +52,7 @@ jobs:
           echo Version: $VERSION
           VERSION="${VERSION//v}"
           echo Clean Version: $VERSION
+          dotnet pack -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg ArielWeb/ArielWeb.csproj
+      - name: Push to Github Packages
+        run: |
+         dotnet nuget push ./nupkg/*.nupkg --api-key ${NUGET_AUTH_TOKEN} --skip-duplicate --no-symbols true -s https://nuget.pkg.github.com/ArielWeb/index.json

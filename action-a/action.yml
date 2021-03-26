@@ -3,14 +3,29 @@ description: "Greet someone"
 author: "octocat@github.com"
 
 inputs:
-  MY_NAME:
-    description: "Who to greet"
+  owner:
+    description:
+      'owner'
     required: true
-    default: "World"
+  version:
+    description:
+      'version'
+    required: true
+  branch:
+    description:
+      'branch'
+    required: true
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "ArielWeb/Dockerfile"
+  args:
+  - '-o'
+  - ${{ inputs.owner }}
+  - '-v'
+  - ${{ inputs.version }}
+  - '-b'
+  - ${{ inputs.branch }}
 
 branding:
   icon: "mic"
