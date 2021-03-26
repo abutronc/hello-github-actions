@@ -29,7 +29,7 @@ jobs:
         with:
           dotnet-version: 3.1
       - name: Build
-        run: dotnet build ./ArielWeb/ArielWeb.csproj -c Release
+        run: dotnet build ./action-a/ArielWeb/ArielWeb.csproj -c Release
   deploy:
     needs: [build]
     if: github.event_name == 'release'
