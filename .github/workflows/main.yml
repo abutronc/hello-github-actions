@@ -52,7 +52,7 @@ jobs:
           echo Version: $VERSION
           VERSION="${VERSION//v}"
           echo Clean Version: $VERSION
-          dotnet pack -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg ArielWeb/ArielWeb.csproj
+          dotnet pack -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg action-a/ArielWeb/ArielWeb.csproj
       - name: Push to Github Packages
         run: |
          dotnet nuget push ./nupkg/*.nupkg --api-key ${NUGET_AUTH_TOKEN} --skip-duplicate --no-symbols true -s https://nuget.pkg.github.com/ArielWeb/index.json
