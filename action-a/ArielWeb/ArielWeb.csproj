@@ -5,6 +5,7 @@
     <UserSecretsId>d2f3a19a-8d2a-43c8-83e7-4346cbf215ce</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	<IsPackable>true</IsPackable>
+	<RepositoryUrl>https://github.com/abutronc/hello-github-actions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
