@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        uses: actions/checkout@v2
         # This step references the directory that contains the action.
         uses: ./action-a/action1
         with:
@@ -30,7 +31,6 @@ jobs:
         with:
           dotnet-version: 3.1
       - name: Build
-        uses: actions/checkout@v2
         run: dotnet build ./action-a/ArielWeb/ArielWeb.csproj -c Release
   deploy:
     needs: [build]
