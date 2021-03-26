@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["ArielWeb.csproj", "ArielWeb/"]
+COPY ["ArielWeb/ArielWeb.csproj", "ArielWeb/"]
 RUN dotnet restore "ArielWeb/ArielWeb.csproj"
 COPY . .
 WORKDIR "/src/ArielWeb"
