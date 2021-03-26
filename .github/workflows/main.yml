@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        # This step checks out a copy of your repository.
-        uses: actions/checkout@v2
         # This step references the directory that contains the action.
         uses: ./action-a/action1
         with:
@@ -38,8 +36,6 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
-        # This step checks out a copy of your repository.
-      - uses: actions/checkout@v2
         # This step references the directory that contains the action.
         uses: ./action-a/action2
         with:
